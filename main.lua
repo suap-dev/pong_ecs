@@ -10,7 +10,7 @@ local world
 function love.load()
     screen.width, screen.height = love.graphics.getDimensions()
 
-    require("components")
+    Utils.loadNamespace("components")
     Utils.loadNamespace("systems", systems)
     -- systems = require("systems")
     world = World()
