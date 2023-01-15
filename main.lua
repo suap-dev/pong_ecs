@@ -4,30 +4,20 @@ local entities = {}
 local systems = {}
 local world
 
-local screen = {}
-
 function love.load()
-    screen.width, screen.height = love.graphics.getDimensions()
-
-    Concord.utils.loadNamespace("components")
-    Concord.utils.loadNamespace("systems", systems)
-    Concord.utils.loadNamespace("entities", entities)
+    Concord.utils.loadNamespace("game/components")
+    Concord.utils.loadNamespace("game/systems", systems)
+    Concord.utils.loadNamespace("game/entities", entities)
 
     world = Concord.world()
-    for _, system in pairs(systems) do       
+
+    for _, system in pairs(systems) do
         world:addSystem(system)
     end
 
-    local rocket_width, rocket_height = 15, 80
-    local left_rocket = entities.rocket(20, 20, rocket_width, rocket_height, {1,0,0})
-    local right_rocket = entities.rocket(screen.width - rocket_width - 20, 20, rocket_width, rocket_height, {0,1,0})
-
-    local ball_radius = 15
-    local ball = entities.ball(screen.width/2, screen.height/2, ball_radius, {0,0,1})
-
-    world:addEntity(left_rocket)
-    world:addEntity(right_rocket)
-    world:addEntity(ball)
+    for _, entity in pairs(entities) do
+        world:addEntity(entity)
+    end
 end
 
 function love.update(dt)
@@ -40,8 +30,8 @@ end
 
 function love.keypressed(key)
     if key == "r" then
-		love.event.quit("restart")
-	end
+        love.event.quit("restart")
+    end
     if key == "q" then
         love.event.quit("exit")
     end

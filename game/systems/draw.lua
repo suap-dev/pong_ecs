@@ -2,7 +2,7 @@ local System = require("modules.concord.system")
 
 local draw = System({
     rectangles = { "position", "drawable", "rectangle", "color" },
-    circles = { "position", "drawable", "circle", "color"}
+    circles = { "position", "drawable", "circle", "color" }
 })
 function draw:draw()
     for _, e in ipairs(self.rectangles) do
@@ -10,7 +10,7 @@ function draw:draw()
         love.graphics.rectangle(
             "fill",
             e.position.x, e.position.y,
-            e.rectangle.width, e.rectangle.height        
+            e.rectangle.width, e.rectangle.height
         )
     end
 
