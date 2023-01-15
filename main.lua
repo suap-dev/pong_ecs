@@ -4,7 +4,7 @@ local entities = {}
 local systems = {}
 local world
 
-require("game.controls")
+require("game.general_controls")
 
 function love.load()
     Concord.utils.loadNamespace("game/components")
