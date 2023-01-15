@@ -1,0 +1,11 @@
+.vscode/settings.json
+.vscode/concord/component.lua
+.vscode/concord/components.lua
+.vscode/concord/entity.lua
+.vscode/concord/init.lua
+.vscode/concord/list.lua
+.vscode/concord/pool.lua
+.vscode/concord/system.lua
+.vscode/concord/type.lua
+.vscode/concord/utils.lua
+.vscode/concord/world.lua
