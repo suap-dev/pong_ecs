@@ -1,11 +1,10 @@
 local Concord = require("modules.concord")
 
 local entities = {}
-
-local screen = {}
-
 local systems = {}
 local world
+
+local screen = {}
 
 function love.load()
     screen.width, screen.height = love.graphics.getDimensions()
