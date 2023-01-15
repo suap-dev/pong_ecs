@@ -1,18 +1,22 @@
+local Utils = require("modules.concord.utils")
 local World = require("modules.concord.world")
 local entity = require("entities")
 
 local screen = {}
 
-local systems
+local systems = {}
 local world
 
 function love.load()
     screen.width, screen.height = love.graphics.getDimensions()
 
     require("components")
-    systems = require("systems")
+    Utils.loadNamespace("systems", systems)
+    -- systems = require("systems")
     world = World()
-    world:addSystems(unpack(systems))
+    for _, system in pairs(systems) do       
+        world:addSystem(system)
+    end
 
     local rocket_width, rocket_height = 15, 80
     local left_rocket = entity.Rocket(20, 20, rocket_width, rocket_height, {1,0,0})
