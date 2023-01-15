@@ -1,5 +1,5 @@
-local Utils = require("modules.concord.utils")
-local World = require("modules.concord.world")
+local Concord = require("modules.concord")
+
 local entities = {}
 
 local screen = {}
@@ -10,11 +10,11 @@ local world
 function love.load()
     screen.width, screen.height = love.graphics.getDimensions()
 
-    Utils.loadNamespace("components")
-    Utils.loadNamespace("systems", systems)
-    Utils.loadNamespace("entities", entities)
-    -- systems = require("systems")
-    world = World()
+    Concord.utils.loadNamespace("components")
+    Concord.utils.loadNamespace("systems", systems)
+    Concord.utils.loadNamespace("entities", entities)
+
+    world = Concord.world()
     for _, system in pairs(systems) do       
         world:addSystem(system)
     end
