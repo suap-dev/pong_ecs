@@ -4,6 +4,8 @@ local entities = {}
 local systems = {}
 local world
 
+require("game.controls")
+
 function love.load()
     Concord.utils.loadNamespace("game/components")
     Concord.utils.loadNamespace("game/systems", systems)
@@ -26,13 +28,4 @@ end
 
 function love.draw()
     world:emit("draw")
-end
-
-function love.keypressed(key)
-    if key == "r" then
-        love.event.quit("restart")
-    end
-    if key == "q" then
-        love.event.quit("exit")
-    end
 end
