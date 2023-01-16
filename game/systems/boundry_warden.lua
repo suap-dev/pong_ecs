@@ -1,12 +1,11 @@
 local System = require("modules.concord.system")
 
+-- TODO: make a proper collision system?
 local screen = {}
 screen.width, screen.height = love.graphics.getDimensions()
 
 local top, bot, left, right
 local collisions
--- local get_collisions
-
 
 local function get_collisions(top, bot, left, right)
     local collisions = {}

@@ -23,6 +23,7 @@ function love.load()
 end
 
 function love.update(dt)
+    world:emit("play")
     world:emit("ward")
     world:emit("update", dt)
 end
