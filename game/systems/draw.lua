@@ -1,10 +1,10 @@
 local System = require("modules.concord.system")
 
-local draw = System({
+local system = System({
     rectangles = { "position", "drawable", "rectangle", "color" },
     circles = { "position", "drawable", "circle", "color" }
 })
-function draw:draw()
+function system:draw()
     for _, e in ipairs(self.rectangles) do
         love.graphics.setColor(unpack(e.color.rgb))
         love.graphics.rectangle(
@@ -24,4 +24,4 @@ function draw:draw()
     end
 end
 
-return draw
+return system

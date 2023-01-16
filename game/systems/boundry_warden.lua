@@ -5,11 +5,11 @@ screen.width, screen.height = love.graphics.getDimensions()
 
 local top, bot, left, right
 
-local sheriff = System({
+local system = System({
     circles_with_velocity = { "bound_to_screen", "position", "velocity", "circle" },
     rectangles_with_velocity = { "bound_to_screen", "position", "velocity", "rectangle" },
 })
-function sheriff:ward()
+function system:ward()
     for _, e in ipairs(self.circles_with_velocity) do
         top, bot, left, right =
         e.position.y - e.circle.radius,
@@ -51,4 +51,4 @@ function sheriff:ward()
     end
 end
 
-return sheriff
+return system

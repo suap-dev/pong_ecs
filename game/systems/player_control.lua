@@ -1,9 +1,9 @@
 local System = require("modules.concord.system")
 
-local player_control = System({
+local system = System({
     pool = { "position", "controlable"}
 })
-function player_control:update(dt)
+function system:update(dt)
     for _, e in ipairs(self.pool) do
         if love.keyboard.isDown(e.controlable.up) then
             e:give("velocity", 0, -e.controlable.base_speed)
@@ -15,4 +15,4 @@ function player_control:update(dt)
     end
 end
 
-return player_control
+return system
