@@ -5,6 +5,30 @@ screen.width, screen.height = love.graphics.getDimensions()
 
 local top, bot, left, right
 local collisions
+-- local get_collisions
+
+
+local function get_collisions(top, bot, left, right)
+    local collisions = {}
+    local any_collisions = false
+    if top <= 0 then
+        collisions.top = true
+        any_collisions = true
+    end
+    if bot >= screen.height then
+        collisions.bot = true
+        any_collisions = true
+    end
+    if left <= 0 then
+        collisions.left = true
+        any_collisions = true
+    end
+    if right >= screen.width then
+        collisions.right = true
+        any_collisions = true
+    end
+    return any_collisions and collisions or nil
+end
 
 local system = System({
     circles_with_velocity = { "bound_to_screen", "position", "velocity", "circle" },
@@ -40,28 +64,6 @@ function system:ward()
             e:remove("collides")
         end
     end
-end
-
-get_collisions = function(top, bot, left, right)
-    local collisions = {}
-    local any_collisions = false
-    if top <= 0 then
-        collisions.top = true
-        any_collisions = true
-    end
-    if bot >= screen.height then
-        collisions.bot = true
-        any_collisions = true
-    end
-    if left <= 0 then
-        collisions.left = true
-        any_collisions = true
-    end
-    if right >= screen.width then
-        collisions.right = true
-        any_collisions = true
-    end
-    return any_collisions and collisions or nil
 end
 
 return system
