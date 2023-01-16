@@ -6,7 +6,6 @@ screen.width, screen.height = love.graphics.getDimensions()
 local top, bot, left, right
 local collisions
 
--- FIXME: remove code repetition
 local system = System({
     circles_with_velocity = { "bound_to_screen", "position", "velocity", "circle" },
     rectangles_with_velocity = { "bound_to_screen", "position", "velocity", "rectangle" },
@@ -19,26 +18,8 @@ function system:ward()
             e.position.x - e.circle.radius,
             e.position.x + e.circle.radius
 
-        collisions = {}
-        local any_collisions = false;
-        if top <= 0 then
-            collisions.top = true
-            any_collisions = true
-        end
-        if bot >= screen.height then
-            collisions.bot = true
-            any_collisions = true
-        end
-        if left <= 0 then
-            collisions.left = true
-            any_collisions = true
-        end
-        if right >= screen.width then
-            collisions.right = true
-            any_collisions = true
-        end
-
-        if any_collisions then
+        collisions = get_collisions(top, bot, left, right)
+        if collisions then
             e:give("collides", collisions)
         else
             e:remove("collides")
@@ -52,31 +33,35 @@ function system:ward()
             e.position.x,
             e.position.x + e.rectangle.width
 
-        collisions = {}
-        local any_collisions = false;
-        if top <= 0 then
-            collisions.top = true
-            any_collisions = true
-        end
-        if bot >= screen.height then
-            collisions.bot = true
-            any_collisions = true
-        end
-        if left <= 0 then
-            collisions.left = true
-            any_collisions = true
-        end
-        if right >= screen.width then
-            collisions.right = true
-            any_collisions = true
-        end
-
-        if any_collisions then
+        collisions = get_collisions(top, bot, left, right)
+        if collisions then
             e:give("collides", collisions)
         else
             e:remove("collides")
         end
     end
+end
+
+get_collisions = function(top, bot, left, right)
+    local collisions = {}
+    local any_collisions = false
+    if top <= 0 then
+        collisions.top = true
+        any_collisions = true
+    end
+    if bot >= screen.height then
+        collisions.bot = true
+        any_collisions = true
+    end
+    if left <= 0 then
+        collisions.left = true
+        any_collisions = true
+    end
+    if right >= screen.width then
+        collisions.right = true
+        any_collisions = true
+    end
+    return any_collisions and collisions or nil
 end
 
 return system
