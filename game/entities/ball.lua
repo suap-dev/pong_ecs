@@ -10,5 +10,6 @@ return Entity()
     :give("color", color)
     :give("drawable")
     :give("velocity", 200, -200)    -- FIXME: this is gonna blow in my face later
+                                    -- actualy it shouldn't anymore... fixed in ai_balls.lua system
     :give("bound_to_screen")
     :give("ai")
