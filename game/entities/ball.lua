@@ -9,5 +9,6 @@ return Entity()
     :give("circle", radius)
     :give("color", color)
     :give("drawable")
-    :give("velocity", 200, -200)
+    :give("velocity", 200, -200)    -- FIXME: this is gonna blow in my face later
     :give("bound_to_screen")
+    :give("ai")
